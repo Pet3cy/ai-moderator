@@ -47716,7 +47716,9 @@ async function runPrompt(openai, promptPath, content) {
         catch (parseError) {
             console.error(`Error parsing JSON response from ${promptPath}:`, parseError);
             console.error(`Raw response: ${output}`);
-            throw new Error(`Invalid JSON response from prompt: ${output}`);
+            throw new Error(`Invalid JSON response from prompt: ${output}`, {
+                cause: parseError
+            });
         }
     }
     catch (error) {
