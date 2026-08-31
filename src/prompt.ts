@@ -122,7 +122,9 @@ export async function runPrompt(
         parseError
       )
       console.error(`Raw response: ${output}`)
-      throw new Error(`Invalid JSON response from prompt: ${output}`)
+      throw new Error(`Invalid JSON response from prompt: ${output}`, {
+        cause: parseError
+      })
     }
   } catch (error) {
     console.error(`Error running prompt ${promptPath}:`, error)
